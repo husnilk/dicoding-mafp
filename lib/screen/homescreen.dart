@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatelessWidget{
-
+class HomeScreen extends StatelessWidget {
   final String username;
 
   const HomeScreen(this.username, {super.key});
@@ -9,21 +8,53 @@ class HomeScreen extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
           child: Column(
             children: [
-              Container(
-                padding: EdgeInsets.all(16),
-                color: Colors.red,
+              const SizedBox(height: 12),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        "Hai,",
+                        style: TextStyle(
+                          color: Colors.black26,
+                          fontSize: 14,
+                        ),
+                      ),
+                      Text(
+                        username,
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
+                      )
+                    ],
+                  ),
+                  const CircleAvatar(
+                    radius: 40,
+                    child: CircleAvatar(
+                      radius: 28,
+                      backgroundImage: AssetImage("assets/img/avatar.png"),
+                    ),
+                  )
+                ],
               ),
+              const SizedBox(height: 12),
               ElevatedButton(
+                  child: const Text('Back'),
                   onPressed: () {
                     Navigator.pop(context);
-                  },
-                  child: Text('Back')
-              )
+                  }),
             ],
-          )
+          ),
+        ),
       ),
     );
   }
